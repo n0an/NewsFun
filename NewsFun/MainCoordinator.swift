@@ -9,7 +9,15 @@ class MainCoordinator: Coordinator {
     }
 
     func start() {
-        let vc = ViewController.instantiate()            
+        let vc = ViewController.instantiate()
+        vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func showWebView(with article: Article) {
+        let vc = WebViewController.instantiate()
+        vc.coordinator = self
+        vc.article = article
+        navigationController.pushViewController(vc, animated: true)
     }
 }

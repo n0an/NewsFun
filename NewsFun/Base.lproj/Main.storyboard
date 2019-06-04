@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oU2-td-eVg">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="270" id="6ru-7V-ahW" customClass="ArticleCell" customModule="NewsFun" customModuleProvider="target">
@@ -40,7 +40,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🎾 Sports" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDA-jU-m0Z">
-                                                    <rect key="frame" x="4" y="244.5" width="367" height="25"/>
+                                                    <rect key="frame" x="4" y="236.5" width="367" height="25"/>
                                                     <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="5e4-Jd-SKJ"/>
@@ -50,7 +50,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Filler" translatesAutoresizingMaskIntoConstraints="NO" id="6Cp-Uq-svJ">
-                                                    <rect key="frame" x="4" y="61" width="367" height="183.5"/>
+                                                    <rect key="frame" x="4" y="61" width="367" height="175.5"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -63,7 +63,7 @@
                                                 <constraint firstItem="6Cp-Uq-svJ" firstAttribute="top" secondItem="81j-BF-DOt" secondAttribute="bottom" id="o2l-3e-IIW"/>
                                                 <constraint firstItem="81j-BF-DOt" firstAttribute="top" secondItem="mpM-jT-KAM" secondAttribute="topMargin" id="ows-ZH-1c7"/>
                                                 <constraint firstItem="81j-BF-DOt" firstAttribute="leading" secondItem="mpM-jT-KAM" secondAttribute="leading" constant="4" id="qwS-70-XH0"/>
-                                                <constraint firstAttribute="bottom" secondItem="EDA-jU-m0Z" secondAttribute="bottom" id="sWJ-PT-D0B"/>
+                                                <constraint firstAttribute="bottom" secondItem="EDA-jU-m0Z" secondAttribute="bottom" constant="8" id="sWJ-PT-D0B"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -90,7 +90,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="NewsFun" id="vze-IO-h6V">
                         <barButtonItem key="backBarButtonItem" title="Articles" id="tuk-HM-zdL"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="7Sq-FO-1Kf"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="7Sq-FO-1Kf">
+                            <connections>
+                                <action selector="refreshTapped:" destination="BYZ-38-t0r" id="JnJ-ux-jd9"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="oU2-td-eVg" id="15L-DX-wq3"/>
@@ -98,12 +102,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072.8" y="133.5832083958021"/>
+            <point key="canvasLocation" x="2012" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Web View Controller-->
         <scene sceneID="EVX-If-kQm">
             <objects>
-                <viewController id="zhK-wq-vTf" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" id="zhK-wq-vTf" customClass="WebViewController" customModule="NewsFun" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VjH-du-goZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -126,10 +130,31 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="A1s-oo-I1V"/>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="h7g-qa-78L" id="HhP-Ri-jw7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZy-MF-sjT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1862" y="134"/>
+            <point key="canvasLocation" x="2766" y="134"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1js-fa-Slx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yg6-9W-PA8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WZy-MM-PzC">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Pw2-dO-ACB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IBz-qm-byV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1072.8" y="133.5832083958021"/>
         </scene>
     </scenes>
     <resources>

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Anton Novoselov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Article {
     
@@ -14,8 +14,15 @@ struct Article {
     var urlToImage: String
     var url: String
     var description: String
-    var category: String
+    var category: NewsCategory = .business
+    var categoryColor = UIColor.red
     
-    
-    
+}
+
+enum NewsCategory: String {
+    case business = "📤 Business"
+    case entertainment = "🍄 Entertainment"
+    case politics = "👮‍♀️ Politics"
+    case sports = "🎾 Sports"
+    case technology = "💻 Technology"
 }

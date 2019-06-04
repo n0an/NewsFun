@@ -13,12 +13,19 @@ class ViewController: UIViewController, Storyboarded {
 
     @IBOutlet weak var tableView: UITableView!
     
+    weak var coordinator: MainCoordinator?
+    
     var news: [Article] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
+        getArticles()
+        
+        tableView.separatorStyle = .none
+    }
+    
+    func getArticles() {
         NewsManager.shared.getArticles { (articles) in
             
             self.news = articles
@@ -26,7 +33,10 @@ class ViewController: UIViewController, Storyboarded {
         }
     }
 
-
+    @IBAction func refreshTapped(_ sender: Any) {
+        getArticles()
+    }
+    
 }
 
 extension ViewController: UITableViewDataSource {
@@ -41,7 +51,8 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ArticleCell
         
         cell.captionLabel.text = article.title
-        cell.categoryLabel.text = article.category
+        cell.categoryLabel.text = article.category.rawValue
+        cell.categoryLabel.backgroundColor = article.categoryColor
         
         let url = URL(string: article.urlToImage)
         
@@ -54,6 +65,13 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 270
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let article = self.news[indexPath.row]
+        
+        coordinator?.showWebView(with: article)
     }
 }
 

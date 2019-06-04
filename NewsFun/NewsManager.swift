@@ -31,16 +31,35 @@ class NewsManager {
                         let url = jsonArticle["url"] as? String,
                         let description = jsonArticle["description"] as? String else { continue }
                         
-                        var article = Article(title: title, urlToImage: urlToImage, url: url, description: description, category: "")
-                        
-                        article.category = DocumentClassifier().classify(article.description + " " + article.title)?.prediction.category.rawValue ?? ""
-                        
-                        articles.append(article)
+                        var article = Article(title: title, urlToImage: urlToImage, url: url, description: description, category: .business, categoryColor: .red)
                         
                         let classifier = DocumentClassifier()
-                        let prediction = classifier.classify(article.description + " " + article.title)?.prediction
-//                        print(title)
-//                        print(prediction?.category.rawValue)
+                        guard let classification = classifier.classify(description + " " + title) else { continue }
+                        
+                        switch classification.prediction.category {
+                        case .business:
+                            article.category = .business
+                            article.categoryColor = #colorLiteral(red: 0.9712339449, green: 0.7909381754, blue: 0.7903050474, alpha: 1)
+
+                        case .entertainment:
+                            article.category = .entertainment
+                            article.categoryColor = #colorLiteral(red: 0.4219700981, green: 0.8855112887, blue: 0.130600521, alpha: 1)
+
+                        case .sports:
+                            article.category = .sports
+                            article.categoryColor = #colorLiteral(red: 0.938082443, green: 0.9712339449, blue: 0.5952478299, alpha: 1)
+
+                        case .politics:
+                            article.category = .politics
+                            article.categoryColor = #colorLiteral(red: 0.7060737717, green: 0.9712339449, blue: 0.9673998652, alpha: 1)
+
+                        case .technology:
+                            article.category = .technology
+                            article.categoryColor = #colorLiteral(red: 0.8432022172, green: 0.8440583058, blue: 0.9712339449, alpha: 1)
+
+                        }
+                        
+                        articles.append(article)
                         
                     }
                     
